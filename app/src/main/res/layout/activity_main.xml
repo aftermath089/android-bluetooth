@@ -20,10 +20,17 @@
         android:text="discoverable"
         app:layout_constraintTop_toBottomOf="@id/tb_bluetooth"/>
 
+    <Button
+        android:id="@+id/btn_discover_nearby"
+        android:text="discover nearby"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btn_discover"/>
+
     <ListView
         android:id="@+id/lv_device"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/btn_discover"></ListView>
+        app:layout_constraintTop_toBottomOf="@id/btn_discover_nearby"></ListView>
 
 </android.support.constraint.ConstraintLayout>
