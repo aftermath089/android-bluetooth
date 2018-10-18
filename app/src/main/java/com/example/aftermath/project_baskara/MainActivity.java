@@ -163,6 +163,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: LOOKING FOR NEARBY DEVICE");
+
+                //add remove all recycle data
+                if(!listBluetoothDevice.isEmpty()) {
+                    listBluetoothDevice.clear();
+                    arrayListStrength.clear();
+                }
+
                 if(bluetoothAdapter.isDiscovering()){
                     bluetoothAdapter.cancelDiscovery();
                     Log.d(TAG, "onClick: CANCEL DISCOVERY");
