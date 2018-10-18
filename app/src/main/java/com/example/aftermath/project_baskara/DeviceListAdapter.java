@@ -15,23 +15,28 @@ public class DeviceListAdapter extends ArrayAdapter<BluetoothDevice> {
 
     private LayoutInflater mLayoutInflater;
     private ArrayList<BluetoothDevice> mDevices;
+    private ArrayList strength;
     private int  mViewResourceId;
 
-    public DeviceListAdapter(Context context, int tvResourceId, ArrayList<BluetoothDevice> devices){
+    public DeviceListAdapter(Context context, int tvResourceId, ArrayList<BluetoothDevice> devices, ArrayList strength){
         super(context, tvResourceId,devices);
         this.mDevices = devices;
+        this.strength = strength;
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mViewResourceId = tvResourceId;
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
-        convertView = mLayoutInflater.inflate(mViewResourceId, null);
+    public View getView(int position, View view, ViewGroup parent) {
+        view = mLayoutInflater.inflate(mViewResourceId, null);
 
         BluetoothDevice device = mDevices.get(position);
+        String strengthy = strength.get(position).toString()+" dBm";
 
         if (device != null) {
-            TextView deviceName = (TextView) convertView.findViewById(R.id.tv_device_name);
-            TextView deviceAdress = (TextView) convertView.findViewById(R.id.tv_device_address);
+            TextView deviceName = view.findViewById(R.id.tv_device_name);
+            TextView deviceAdress = view.findViewById(R.id.tv_device_address);
+            TextView deviceStrength = view.findViewById(R.id.tv_signal_strength);
+
 
             if (deviceName != null) {
                 deviceName.setText(device.getName());
@@ -39,9 +44,12 @@ public class DeviceListAdapter extends ArrayAdapter<BluetoothDevice> {
             if (deviceAdress != null) {
                 deviceAdress.setText(device.getAddress());
             }
+            if(deviceStrength !=null){
+                deviceStrength.setText(strengthy);
+            }
         }
 
-        return convertView;
+        return view;
     }
 
 }

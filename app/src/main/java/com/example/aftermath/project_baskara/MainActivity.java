@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     ListView lvDevice;
     BluetoothAdapter bluetoothAdapter;
     public ArrayList<BluetoothDevice> listBluetoothDevice = new ArrayList<>();
+    public ArrayList arrayListStrength = new ArrayList();
     public DeviceListAdapter deviceListAdapter;
 
     private void initViews(){
@@ -96,9 +97,13 @@ public class MainActivity extends AppCompatActivity {
 
             if (action.equals(BluetoothDevice.ACTION_FOUND)){
                 BluetoothDevice device = intent.getParcelableExtra (BluetoothDevice.EXTRA_DEVICE);
+                int strength = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI, Short.MIN_VALUE);
                 listBluetoothDevice.add(device);
+                ////
+                arrayListStrength.add(strength);
+
                 Log.d(TAG, "onReceive: " + device.getName() + ": " + device.getAddress());
-                deviceListAdapter = new DeviceListAdapter(context, R.layout.adapter_device, listBluetoothDevice);
+                deviceListAdapter = new DeviceListAdapter(context, R.layout.adapter_device, listBluetoothDevice, arrayListStrength);
                 lvDevice.setAdapter(deviceListAdapter);
             }
         }
