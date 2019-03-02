@@ -86,4 +86,28 @@ class Tetrahedron{
         estimateY = volume()*3/heron(s1,s2,s3);
         return estimateY;
     }
+
+    public double hDistanceToP1(){
+        double height = getEstimateY();
+        double distance = Math.sqrt(
+            Math.pow(hy1,2)-Math.pow(height,2)
+        );
+        return distance;
+    }
+
+    public double hDistanceToP2(){
+        double height = getEstimateY();
+        double distance = Math.sqrt(
+            Math.pow(hy2,2)-Math.pow(height,2)
+        );
+        return distance;
+    }
+
+    public double hDistanceToP3(){
+        double height = getEstimateY();
+        double distance = Math.sqrt(
+            Math.pow(hy3,2)-Math.pow(height,2)
+        );
+        return distance;
+    }
 }
